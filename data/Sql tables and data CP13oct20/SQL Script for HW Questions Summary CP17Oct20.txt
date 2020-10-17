@@ -1,0 +1,29 @@
+select * from employees;
+select * from salaries;
+create table salaries(
+	emp_no INT,
+	salary INT);
+	
+select e.emp_no, e.last_name, e.first_name, e.sex, s.salary from employees As e
+left join salaries As s on (e.emp_no = s.emp_no)
+order by e.emp_no;
+
+Alter table employees
+Alter column emp_no type INT
+using emp_no::integer; 
+
+Alter table employees
+Alter column hire_date type date
+using hire_date::date; 
+
+select first_name, last_name, hire_date from employees
+where hire_date between '1986-01-01' and '1986-12-31';
+
+select dm.emp_no, dm.dept_no, d.dept_name, e.first_name, e.last_name from dept_manager as dm
+inner join department as d on (dm.dept_no = d.dept_no)
+inner join employees as e on (dm.emp_no = e.emp_no);
+
+
+Alter table depmartment
+Alter column emp_no type INT
+using emp_no::integer; 
