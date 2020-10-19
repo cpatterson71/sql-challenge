@@ -23,7 +23,6 @@ select dm.emp_no, dm.dept_no, d.dept_name, e.first_name, e.last_name from dept_m
 inner join department as d on (dm.dept_no = d.dept_no)
 inner join employees as e on (dm.emp_no = e.emp_no);
 
-
 Alter table depmartment
 Alter column emp_no type INT
 using emp_no::integer; 
@@ -48,9 +47,12 @@ using emp_no::integer;
 select e.emp_no, e.first_name, e.last_name, dep.dept_no, dpt.dept_name from employees as e
 left join dept_emp as dep on (e.emp_no = dep.emp_no)
 left join department as dpt on (dep.dept_no = dpt.dept_no)
-where dpt.dept_no = 'd007';
+where dpt.dept_no = 'd007'
+order by e.emp_no;
 
 select e.emp_no, e.first_name, e.last_name, dep.dept_no, dpt.dept_name from employees as e
 left join dept_emp as dep on (e.emp_no = dep.emp_no)
 left join department as dpt on (dep.dept_no = dpt.dept_no)
-where dpt.dept_no = 'd005';
+where dpt.dept_no = 'd005'
+order by e.emp_no
+
