@@ -33,14 +33,24 @@ select first_name, last_name, sex from employees
 where first_name = 'Hercules' and 
 last_name like 'B%';
 
+select * from employees;
 select * from dept_emp;
 select * from department;
 
-select e.emp_no, e.last_name, e.first_name, dep.emp_no, dep.dept_name from employees as e
-inner join department as dep on (e.emp_no = dep.emp_no)
-where dep.dept_name = 'Sales'
-order by e.emp_no;
+select e.emp_no, e.first_name, e.last_name, dep.dept_no from employees as e
+left join dept_emp as dep on (e.emp_no = dep.emp_no)
+where dep.dept_no = 'd007';
 
 Alter table dept_emp
 Alter column emp_no type INT
 using emp_no::integer;
+
+select e.emp_no, e.first_name, e.last_name, dep.dept_no, dpt.dept_name from employees as e
+left join dept_emp as dep on (e.emp_no = dep.emp_no)
+left join department as dpt on (dep.dept_no = dpt.dept_no)
+where dpt.dept_no = 'd007';
+
+select e.emp_no, e.first_name, e.last_name, dep.dept_no, dpt.dept_name from employees as e
+left join dept_emp as dep on (e.emp_no = dep.emp_no)
+left join department as dpt on (dep.dept_no = dpt.dept_no)
+where dpt.dept_no = 'd005';
