@@ -56,3 +56,17 @@ left join department as dpt on (dep.dept_no = dpt.dept_no)
 where dpt.dept_no = 'd005'
 order by e.emp_no
 
+select count(*) from employees;
+SELECT e.last_name, e.first_name
+FROM employees As e
+WHERE (
+    (e.last_name IN
+      (
+      SELECT e.last_name 
+      FROM employees As Tmp
+      GROUP BY last_name, first_name
+      HAVING Count(*)>1 And last_name = e.last_name
+      )
+    )
+  )
+ORDER BY e.last_name desc;
